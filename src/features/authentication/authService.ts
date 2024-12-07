@@ -23,7 +23,7 @@ export const createUser = async (userData: IUser) => {
   });
 
   // send verification email
-  const url = `http://localhost:5173/verify-email?email=${email}&token=${plainToken}`;
+  const url = `${process.env.BASE_URL}/verify-email?email=${email}&token=${plainToken}`;
   const data = { name: fullName.split(' ')[0], email, url };
   await utils.Email.sendVerificationEmail(data);
 };
@@ -119,7 +119,7 @@ export const userForgetPassword = async (userData: { email: string }) => {
       user.passwordTokenExpiresAt = new Date(Date.now() + minutes);
       await user.save({ validateBeforeSave: false });
       // send email with password reset link.
-      const url = `http://localhost:5173/reset-password?email=${email}&token=${plainToken}`;
+      const url = `${process.env.BASE_URL}/reset-password?email=${email}&token=${plainToken}`;
       const data = { name: user.fullName.split(' ').at(0), url, email };
       utils.Email.sendPasswordResetEmail(data);
     } catch (error) {

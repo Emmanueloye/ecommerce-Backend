@@ -52,6 +52,29 @@ router
     userController.updateUserAddress
   );
 
+router
+  .route('/user-report')
+  .get(
+    authMiddleware.protect,
+    authMiddleware.restrictTo('super-admin'),
+    userController.userReports
+  );
+
+router
+  .route('/user-report')
+  .post(
+    authMiddleware.protect,
+    authMiddleware.restrictTo('super-admin'),
+    userController.userReports
+  );
+
+router
+  .route('/get-user-report')
+  .get(
+    authMiddleware.protect,
+    authMiddleware.restrictTo('super-admin'),
+    userController.userReports
+  );
 // router
 //   .route('/update-access')
 //   .patch(

@@ -12,3 +12,4 @@ export {
   calcCartTotal,
   ExtendedCart,
 } from './cartUtilsFunc';
+export { reportDate } from './reportDate';

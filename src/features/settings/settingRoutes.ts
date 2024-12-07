@@ -3,7 +3,7 @@ import * as settingController from './settingController';
 
 const router = Router();
 
-// router.route('/').post(settingController.saveSetting);
+router.route('/').post(settingController.saveSetting);
 
 router.route('/').get(settingController.getSetting);
 

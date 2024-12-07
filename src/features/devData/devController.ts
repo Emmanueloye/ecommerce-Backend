@@ -2,9 +2,7 @@ import { Request, Response } from 'express';
 import Product from '../products/productModel';
 import Review from '../reviews/reviewModel';
 import fs from 'fs';
-// const products = JSON.parse(
-//   fs.readFileSync(`${__dirname}/products.json`, 'utf-8')
-// );
+
 export const uploadDevData = async (req: Request, res: Response) => {
   try {
     const newProducts = JSON.parse(

@@ -19,17 +19,20 @@ Authentication
   -nested routes for reviews
   -calculate numOfReview and averageRating in product model.
 
+  -payment confirmation completion✔
+  error pages✔
+  dashboard metrics
+  --endpoint for addressbook update: prevent submitting empty✔
+
 Todo:
 Backend
 --hero section
 --special deal section
---endpoint for addressbook update: prevent submitting empty✔
 return order functionality.
+email integration✔
+accounting and report module
 
 Frontend
--payment confirmation completion✔
-error pages✔
 price filter
-dashboard metrics
 
 -

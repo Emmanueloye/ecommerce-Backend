@@ -23,6 +23,7 @@ import checkoutRouter from './features/orders/checkoutRoutes';
 import orderRouter from './features/orders/orderRoutes';
 import statsRouter from './features/stats/statsRoutes';
 import settingRouter from './features/settings/settingRoutes';
+import sliderRouter from './features/sliders/sliderRoutes';
 
 // Create express application.
 const app = express();
@@ -49,6 +50,7 @@ app.use('/api/v1/checkout', checkoutRouter);
 app.use('/api/v1/orders', orderRouter);
 app.use('/api/v1/stats', statsRouter);
 app.use('/api/v1/settings', settingRouter);
+app.use('/api/v1/sliders', sliderRouter);
 
 // mount application wide error handlers
 app.use(notFoundMiddleware);

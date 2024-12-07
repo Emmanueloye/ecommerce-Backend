@@ -45,6 +45,7 @@ export const getMe = factory.getOne({
   populateOption: { path: 'access' },
 });
 
+// Get single user for admin route.
 export const getUser = factory.getOne({
   Model: User,
   label: 'user',
@@ -90,6 +91,15 @@ export const restrictUser = async (req: Request, res: Response) => {
   });
 };
 
+// users report for admin route.
+export const userReports = async (req: Request, res: Response) => {
+  const { users, page } = await userService.userReport(req);
+  res
+    .status(statusCodes.OK)
+    .json({ status: 'success', noHits: users.length, page, users });
+};
+
+// user image processing.
 export const processImage = async (
   req: Request,
   res: Response,
@@ -121,6 +131,7 @@ export const processImage = async (
   next();
 };
 
+// Middleware for switching logged in user id with the params.id setup.
 export const switchUserId = (
   req: Request,
   res: Response,
@@ -134,6 +145,7 @@ export const switchUserId = (
   next();
 };
 
+// Validate user password update.
 export const validatePasswordUpdate = checkForErrors([
   body('oldPassword')
     .notEmpty()
@@ -144,12 +156,14 @@ export const validatePasswordUpdate = checkForErrors([
     .withMessage('Confirm Password field is required.'),
 ]);
 
+// Validate admin creation route (admin)
 export const validateAdminCreation = checkForErrors([
   body('fullName').notEmpty().withMessage('Full name field is required.'),
   body('email').notEmpty().withMessage('Email field is required.'),
   body('role').notEmpty().withMessage('User role field is required.'),
 ]);
 
+// Validate address book update.
 export const validateAddressBook = checkForErrors([
   body('address').notEmpty().withMessage('Address field cannot be empty.'),
   body('state').notEmpty().withMessage('State field cannot be empty.'),

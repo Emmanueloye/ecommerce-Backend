@@ -36,6 +36,7 @@
         background-color: #f4f5f6;
         margin: 0;
         padding: 0;
+        width: 100%;
       }
 
       .body {
@@ -145,23 +146,28 @@
         text-transform: capitalize;
       }
 
-      .btn-primary table td {
-        background-color: #0867ec;
+      .btn-primary table td div {
+        /* display: flex; */
+        /* background-color: #0867ec; */
+      }
+      .btn-primary table td span:last-child {
+        text-decoration: underline;
+        /* background-color: #0867ec; */
       }
 
       .btn-primary a {
-        background-color: #0867ec;
+        /* background-color: #0867ec;
         border-color: #0867ec;
-        color: #ffffff;
+        color: #ffffff; */
       }
 
       @media all {
         .btn-primary table td:hover {
-          background-color: #ec0867 !important;
+          /* background-color: #ec0867 !important; */
         }
         .btn-primary a:hover {
-          background-color: #ec0867 !important;
-          border-color: #ec0867 !important;
+          /* background-color: #ec0867 !important;
+          border-color: #ec0867 !important; */
         }
       }
 
@@ -343,8 +349,9 @@
                             <tbody>
                               <tr>
                                 <td>
-                                  <a href="<%= url %>" target="_blank"
-                                    >Verify Email</a
+                                  <span>Verification link: </span>
+                                  <span style="text-decoration: underline"
+                                    ><%= url %></span
                                   >
                                 </td>
                               </tr>

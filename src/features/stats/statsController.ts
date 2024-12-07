@@ -10,7 +10,7 @@ export const dashboardMetrics = async (req: Request, res: Response) => {
   const settings = await Setting.find();
 
   const products = await Product.find({
-    quantity: { $lte: settings[0]?.reorderLevel || 0 },
+    quantity: { $lte: settings[0]?.reorderLevel },
   });
 
   const orders = await Order.find({ orderStatus: 'pending' });

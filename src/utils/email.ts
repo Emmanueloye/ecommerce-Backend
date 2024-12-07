@@ -1,14 +1,21 @@
 import nodemailer from 'nodemailer';
 import ejs from 'ejs';
 import { convert } from 'html-to-text';
-import path from 'path';
+import brevo, { TransactionalEmailsApiApiKeys } from '@getbrevo/brevo';
 
 class Email {
   constructor() {}
   transporter() {
-    // if (process.env.NODE_ENV === 'production') {
-    //   return 1;
-    // }
+    if (process.env.NODE_ENV === 'production') {
+      return nodemailer.createTransport({
+        host: process.env.BREVO_HOST,
+        port: Number(process.env.BREVO_PORT),
+        auth: {
+          user: process.env.BREVO_LOGIN,
+          pass: process.env.BREVO_KEY,
+        },
+      });
+    }
 
     return nodemailer.createTransport({
       host: process.env.EMAIL_HOST,
@@ -19,7 +26,6 @@ class Email {
       },
     });
   }
-  // import ax from '../view/emails'
   async send(template: string, subject: string, data: any) {
     ejs.renderFile(
       `${__dirname}/../view/emails/${template}.ejs`,
@@ -29,7 +35,10 @@ class Email {
           throw err;
         } else {
           const mailOptions = {
-            from: process.env.EMAIL_SENDER,
+            from:
+              process.env.NODE_ENV === 'development'
+                ? process.env.EMAIL_SENDER
+                : process.env.SENDER_EMAIL,
             to: data.email,
             subject,
             html: result,
